@@ -102,6 +102,18 @@ services:
 
     - INVOICEPLANE_URL=https://fatture.nlubello.eu
     - INVOICEPLANE_BACKUPS_EXPIRY=0
+    depends_on:
+    - mariadb
+    volumes:
+    - /srv/docker/invoiceplane/invoiceplane:/var/lib/invoiceplane
+
+  invoiceplane-nginx:
+    restart: always
+    image: sameersbn/invoiceplane:1.4.10-2
+    command: app:nginx
+    environment:
+    - INVOICEPLANE_PHP_FPM_HOST=invoiceplane
+    - INVOICEPLANE_PHP_FPM_PORT=9000
 
     - VIRTUAL_HOST=fatture.nlubello.eu
     - VIRTUAL_NETWORK=nginx-proxy
@@ -109,6 +121,8 @@ services:
     - LETSENCRYPT_HOST=fatture.nlubello.eu
     - LETSENCRYPT_EMAIL=info@nlubello.eu
     depends_on:
-    - mariadb
-    volumes:
-    - /srv/docker/invoiceplane/invoiceplane:/var/lib/invoiceplane
+    - invoiceplane
+    ports:
+    - "10080:80"
+    volumes_from:
+    - invoiceplane
