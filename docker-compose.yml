@@ -85,3 +85,30 @@ services:
       - LETSENCRYPT_EMAIL=info@nlubello.eu
     depends_on:
       - mariadb
+
+  invoiceplane:
+    restart: always
+    image: sameersbn/invoiceplane:1.4.10-2
+    command: app:invoiceplane
+    environment:
+    - DEBUG=false
+    - TZ=Europe/Robe
+
+    - DB_TYPE=mysqli
+    - DB_HOST=mariadb
+    - DB_USER=root
+    - DB_PASS=Nlubello91
+    - DB_NAME=invoiceplane_db
+
+    - INVOICEPLANE_URL=https://fatture.nlubello.eu
+    - INVOICEPLANE_BACKUPS_EXPIRY=0
+
+    - VIRTUAL_HOST=fatture.nlubello.eu
+    - VIRTUAL_NETWORK=nginx-proxy
+    - VIRTUAL_PORT=9000
+    - LETSENCRYPT_HOST=fatture.nlubello.eu
+    - LETSENCRYPT_EMAIL=info@nlubello.eu
+    depends_on:
+    - mariadb
+    volumes:
+    - /srv/docker/invoiceplane/invoiceplane:/var/lib/invoiceplane
