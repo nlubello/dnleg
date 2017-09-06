@@ -71,8 +71,6 @@ services:
       - "TZ=Europe/Rome"
 
   phpmyadmin:
-    build:
-      context: testing/
     container_name: phpmyadmin_testing
     volumes:
       - /sessions
