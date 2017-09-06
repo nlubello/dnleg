@@ -71,7 +71,9 @@ services:
       - "TZ=Europe/Rome"
 
   phpmyadmin:
-    container_name: phpmyadmin_testing
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
     volumes:
       - /sessions
     environment:
