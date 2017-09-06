@@ -53,3 +53,17 @@ services:
       - VIRTUAL_PORT=3000
       - LETSENCRYPT_HOST=git.nlubello.eu
       - LETSENCRYPT_EMAIL=info@nlubello.eu
+
+  mariadb:
+    image: mariadb
+    container_name: gogsmariadb_mariadb
+    restart: always
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+    #volumes:
+    #  - ./volumes/mariadb:/var/lib/mysql # https://github.com/docker-library/mariadb/issues/49
+    environment:
+      - MYSQL_ROOT_PASSWORD=Nlubello91
+      - MYSQL_USER=gogs
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=gogs
+      - "TZ=Europe/Rome"
