@@ -117,12 +117,10 @@ services:
 
     - VIRTUAL_HOST=fatture.nlubello.eu
     - VIRTUAL_NETWORK=nginx-proxy
-    - VIRTUAL_PORT=10080
+    - VIRTUAL_PORT=80
     - LETSENCRYPT_HOST=fatture.nlubello.eu
     - LETSENCRYPT_EMAIL=info@nlubello.eu
     depends_on:
     - invoiceplane
-    ports:
-    - "10080:80"
     volumes_from:
     - invoiceplane
