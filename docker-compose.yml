@@ -100,7 +100,7 @@ services:
     - DB_PASS=Nlubello91
     - DB_NAME=invoiceplane_db
 
-    - INVOICEPLANE_URL=https://fatture.nlubello.eu
+    - INVOICEPLANE_FQDN=fatture.nlubello.eu
     - INVOICEPLANE_BACKUPS_EXPIRY=0
 
     - VIRTUAL_HOST=fatture.nlubello.eu
