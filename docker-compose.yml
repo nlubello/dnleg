@@ -117,7 +117,7 @@ services:
 
     - VIRTUAL_HOST=fatture.nlubello.eu
     - VIRTUAL_NETWORK=nginx-proxy
-    - VIRTUAL_PORT=9000
+    - VIRTUAL_PORT=10080
     - LETSENCRYPT_HOST=fatture.nlubello.eu
     - LETSENCRYPT_EMAIL=info@nlubello.eu
     depends_on:
