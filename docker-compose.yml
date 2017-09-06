@@ -53,6 +53,8 @@ services:
       - VIRTUAL_PORT=3000
       - LETSENCRYPT_HOST=git.nlubello.eu
       - LETSENCRYPT_EMAIL=info@nlubello.eu
+    depends_on:
+      - mariadb
 
   mariadb:
     image: mariadb
@@ -67,3 +69,19 @@ services:
       - MYSQL_PASSWORD=password
       - MYSQL_DATABASE=gogs
       - "TZ=Europe/Rome"
+
+  phpmyadmin:
+    build:
+      context: testing/
+    container_name: phpmyadmin_testing
+    volumes:
+      - /sessions
+    environment:
+      - PMA_ARBITRARY=1
+      - VIRTUAL_HOST=phpmyadmin.nlubello.eu
+      - VIRTUAL_NETWORK=nginx-proxy
+      - VIRTUAL_PORT=80
+      - LETSENCRYPT_HOST=phpmyadmin.nlubello.eu
+      - LETSENCRYPT_EMAIL=info@nlubello.eu
+    depends_on:
+      - mariadb
