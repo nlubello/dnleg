@@ -19,8 +19,5 @@ gogs-sh:
 proxy-sh:
 	@docker exec -it nginx /bin/bash
 
-wiki-logs:
-	@docker logs -ft wiki-vhost
-
 ps:
 	@docker ps --format $(PS_FORMAT)

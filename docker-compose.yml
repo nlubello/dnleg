@@ -39,23 +39,6 @@ services:
     environment:
       - NGINX_DOCKER_GEN_CONTAINER=nginx-gen
 
-  wiki:
-    restart: always
-    depends_on:
-      - nginx-gen
-    image: wiki-website
-    build: ./websites/wiki
-    container_name: wiki-vhost
-    volumes:
-      - "./websites/wiki/html:/usr/share/nginx/html:ro"
-      - "/etc/nginx/auth:/etc/nginx/auth:ro"
-    environment:
-      - VIRTUAL_HOST=wiki.sfinx.in
-      - VIRTUAL_NETWORK=nginx-proxy
-      - VIRTUAL_PORT=80
-      - LETSENCRYPT_HOST=wiki.sfinx.in
-      - LETSENCRYPT_EMAIL=wiki@dev.null
-
   gogs:
     restart: always
     depends_on:
@@ -65,8 +48,8 @@ services:
     volumes:
       - "/opt/gogs:/data"
     environment:
-      - VIRTUAL_HOST=git.sfinx.in
+      - VIRTUAL_HOST=git.nlubello.eu
       - VIRTUAL_NETWORK=nginx-proxy
       - VIRTUAL_PORT=3000
-      - LETSENCRYPT_HOST=git.sfinx.in
-      - LETSENCRYPT_EMAIL=git@dev.null
+      - LETSENCRYPT_HOST=git.nlubello.eu
+      - LETSENCRYPT_EMAIL=info@nlubello.eu

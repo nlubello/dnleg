@@ -13,13 +13,8 @@ the sites structure - all the sites data is stored in websites dir.
 **Install:**
 
 ```
-git clone https://github.com/gogits/gogs.git
-cd gogs
-docker build -t sfinx-gogs:latest .
-cd ..
-git clone https://github.com/Sfinx/dnleg
-cd dnleg
-make up
+git clone https://github.com/nlubello/docker-server.git
+cd docker-server
 ```
 
 **Usage:**
