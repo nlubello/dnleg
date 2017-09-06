@@ -91,36 +91,38 @@ services:
     image: sameersbn/invoiceplane:1.4.10-2
     command: app:invoiceplane
     environment:
-    - DEBUG=false
-    - TZ=Europe/Robe
+      - DEBUG=false
+      - TZ=Europe/Robe
 
-    - DB_TYPE=mysqli
-    - DB_HOST=mariadb
-    - DB_USER=root
-    - DB_PASS=Nlubello91
-    - DB_NAME=invoiceplane_db
+      - DB_TYPE=mysqli
+      - DB_HOST=mariadb
+      - DB_USER=root
+      - DB_PASS=Nlubello91
+      - DB_NAME=invoiceplane_db
 
-    - INVOICEPLANE_URL=https://fatture.nlubello.eu
-    - INVOICEPLANE_BACKUPS_EXPIRY=0
+      - INVOICEPLANE_URL=https://fatture.nlubello.eu
+      - INVOICEPLANE_BACKUPS_EXPIRY=0
     depends_on:
-    - mariadb
+      - mariadb
     volumes:
-    - /srv/docker/invoiceplane/invoiceplane:/var/lib/invoiceplane
+      - /srv/docker/invoiceplane/invoiceplane:/var/lib/invoiceplane
 
   invoiceplane-nginx:
     restart: always
     image: sameersbn/invoiceplane:1.4.10-2
     command: app:nginx
     environment:
-    - INVOICEPLANE_PHP_FPM_HOST=invoiceplane
-    - INVOICEPLANE_PHP_FPM_PORT=9000
+      - INVOICEPLANE_PHP_FPM_HOST=invoiceplane
+      - INVOICEPLANE_PHP_FPM_PORT=9000
 
-    - VIRTUAL_HOST=fatture.nlubello.eu
-    - VIRTUAL_NETWORK=nginx-proxy
-    - VIRTUAL_PORT=80
-    - LETSENCRYPT_HOST=fatture.nlubello.eu
-    - LETSENCRYPT_EMAIL=info@nlubello.eu
+      - VIRTUAL_HOST=fatture.nlubello.eu
+      - VIRTUAL_NETWORK=nginx-proxy
+      - VIRTUAL_PORT=80
+      - LETSENCRYPT_HOST=fatture.nlubello.eu
+      - LETSENCRYPT_EMAIL=info@nlubello.eu
+    ports:
+      - "80:80"
     depends_on:
-    - invoiceplane
+      - invoiceplane
     volumes_from:
-    - invoiceplane
+      - invoiceplane
