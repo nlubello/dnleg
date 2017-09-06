@@ -43,10 +43,10 @@ services:
     restart: always
     depends_on:
       - nginx-gen
-    image: sfinx-gogs
+    image: gogs/gogs
     container_name: gogs
     volumes:
-      - "/opt/gogs:/data"
+      - "/srv/docker/gogs:/data"
     environment:
       - VIRTUAL_HOST=git.nlubello.eu
       - VIRTUAL_NETWORK=nginx-proxy
